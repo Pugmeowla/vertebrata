@@ -11,7 +11,7 @@ public class ModItems {
     public static final DeferredRegister<Item> ITEMS =
             DeferredRegister.create(ForgeRegistries.ITEMS, Vertebrata.MOD_ID);
 
-    public static final RegistryObject<Item> Fedora = ITEMS.register("fedora",
+    public static final RegistryObject<Item> FEDORA = ITEMS.register("fedora",
         () -> new Item(new Item.Properties()));
 
     public static void register(IEventBus eventBus) {
