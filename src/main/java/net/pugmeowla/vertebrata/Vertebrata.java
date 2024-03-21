@@ -15,7 +15,7 @@ import org.slf4j.Logger;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(Vertebrata.MOD_ID)
-class Vertebrata {
+public class Vertebrata {
     public static final String MOD_ID = "vertebrata";
     public static final Logger LOGGER = LogUtils.getLogger();
 
