@@ -3,9 +3,11 @@ package net.pugmeowla.vertebrata;
 import com.mojang.logging.LogUtils;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.common.CreativeModeTabRegistry;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
+import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -13,6 +15,10 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.pugmeowla.vertebrata.entity.ModEntities;
+import net.pugmeowla.vertebrata.entity.client.BreamModel;
+import net.pugmeowla.vertebrata.entity.client.BreamRenderer;
+import net.pugmeowla.vertebrata.entity.custom.EntityBream;
 import net.pugmeowla.vertebrata.item.ModItems;
 import org.slf4j.Logger;
 
@@ -26,11 +32,14 @@ public class Vertebrata {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
         ModItems.register(modEventBus);
+        ModEntities.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);
 
         MinecraftForge.EVENT_BUS.register(this);
         modEventBus.addListener(this::addCreative);
+
+        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::EntityAttributes);
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
@@ -41,8 +50,11 @@ public class Vertebrata {
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
         if(event.getTabKey() == CreativeModeTabs.COMBAT) {
             event.accept(ModItems.FEDORA);
-            event.accept(ModItems.FEDORAS);
         }
+    }
+
+    public void EntityAttributes(final EntityAttributeCreationEvent event) {
+        event.put(ModEntities.BREAM.get(), EntityBream.registerAttributes().build());
     }
 
     // You can use SubscribeEvent and let the Event Bus discover methods to call
@@ -57,6 +69,16 @@ public class Vertebrata {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
 
+        }
+
+        @SubscribeEvent
+        public static void onEntityRenderers(EntityRenderersEvent.RegisterRenderers event) {
+            event.registerEntityRenderer(ModEntities.BREAM.get(), m -> new BreamRenderer(m, new BreamModel<>(m.bakeLayer(BreamModel.LAYER_LOCATION))));
+        }
+
+        @SubscribeEvent
+        public static void registerLayers(EntityRenderersEvent.RegisterLayerDefinitions event) {
+            event.registerLayerDefinition(BreamModel.LAYER_LOCATION, BreamModel::createBodyLayer);
         }
     }
 }

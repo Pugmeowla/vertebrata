@@ -4,14 +4,25 @@ package net.pugmeowla.vertebrata.entity.client;
 // Paste this class into your mod and generate all required imports
 
 
-public class
-BreamModel<T extends Entity> extends EntityModel<T> {
-    // This layer location should be baked with EntityRendererProvider.Context in the entity renderer and passed into this model's constructor
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
+import net.minecraft.client.model.EntityModel;
+import net.minecraft.client.model.geom.ModelLayerLocation;
+import net.minecraft.client.model.geom.ModelPart;
+import net.minecraft.client.model.geom.PartPose;
+import net.minecraft.client.model.geom.builders.*;
+import net.minecraft.resources.ResourceLocation;
+import net.pugmeowla.vertebrata.Vertebrata;
+import net.pugmeowla.vertebrata.entity.custom.EntityBream;
 
-    private final ModelPart Spine;
+public class
+BreamModel<T extends EntityBream> extends EntityModel<T> {
+    // This layer location should be baked with EntityRendererProvider.Context in the entity renderer and passed into this model's constructor
+    public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation(Vertebrata.MOD_ID, "bream"), "main");
+    private final ModelPart root;
 
     public BreamModel(ModelPart root) {
-        this.Spine = root.getChild("Spine");
+        this.root = root.getChild("Spine");
     }
 
     public static LayerDefinition createBodyLayer() {
@@ -71,6 +82,6 @@ BreamModel<T extends Entity> extends EntityModel<T> {
 
     @Override
     public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
-        Spine.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
+        root.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
     }
 }
