@@ -41,6 +41,7 @@ public class Vertebrata {
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
         if(event.getTabKey() == CreativeModeTabs.COMBAT) {
             event.accept(ModItems.FEDORA);
+            event.accept(ModItems.FEDORAS);
         }
     }
 

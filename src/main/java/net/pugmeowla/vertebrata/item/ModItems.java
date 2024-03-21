@@ -13,6 +13,8 @@ public class ModItems {
 
     public static final RegistryObject<Item> FEDORA = ITEMS.register("fedora",
         () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> FEDORAS = ITEMS.register("fedoras",
+            () -> new Item(new Item.Properties()));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
