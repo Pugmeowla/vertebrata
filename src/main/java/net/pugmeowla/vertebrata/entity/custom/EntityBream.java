@@ -22,7 +22,7 @@ public class EntityBream extends PathfinderMob {
     }
 
     protected void registerGoals() {
-     //   this.goalSelector.addGoal(1, new Tempt)
+    //    this.goalSelector.addGoal(1, new TemptGoal())
         this.goalSelector.addGoal(5, new RandomSwimmingGoal(this, 1D, 1));
     }
 }
