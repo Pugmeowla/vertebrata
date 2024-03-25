@@ -18,6 +18,9 @@ public class ModItems {
     public static final RegistryObject<Item> FEDORA = ITEMS.register("fedora", () ->
             new ArmorItem(ModArmorMaterials.FEDORA, ArmorItem.Type.HELMET, new Item.Properties()));
 
+    public static final RegistryObject<Item> PLATYGEM = ITEMS.register("platygem",
+            () -> new Item(new Item.Properties()));
+
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
     }

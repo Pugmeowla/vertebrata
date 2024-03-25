@@ -50,7 +50,9 @@ public class Vertebrata {
         if(event.getTabKey() == CreativeModeTabs.COMBAT) {
             event.accept(ModItems.FEDORA);
         }
+
     }
+
 
     public void EntityAttributes(final EntityAttributeCreationEvent event) {
         event.put(ModEntities.BREAM.get(), EntityBream.registerAttributes().build());
