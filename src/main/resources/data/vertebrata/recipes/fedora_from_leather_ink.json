@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "WR ",
+    "   ",
+    "   "
+  ],
+  "key": {
+    "W": {
+      "item": "minecraft:leather_helmet"
+    },
+    "R": {
+      "item": "minecraft:ink_sac"
+    }
+  },
+  "result": {
+    "item": "vertebrata:fedora",
+    "count": 1
+  }
+}
