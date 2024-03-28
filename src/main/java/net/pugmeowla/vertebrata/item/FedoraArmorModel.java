@@ -14,7 +14,7 @@ public class FedoraArmorModel extends GeoModel<FedoraArmorItem> {
 
     @Override
     public ResourceLocation getTextureResource(FedoraArmorItem fedoraArmorItem) {
-        return new ResourceLocation(Vertebrata.MOD_ID, "textures/armor/fedora.png");
+        return new ResourceLocation(Vertebrata.MOD_ID, "textures/armor/fedora_layer_1.png");
     }
 
     @Override
